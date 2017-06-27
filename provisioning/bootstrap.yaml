@@ -1,0 +1,56 @@
+- hosts: all 
+#  vars:
+#    ansible_python_interpreter: /usr/bin/python2
+  tasks:
+    - name: Ensure deltarpm installed (before updating CentOS packages)
+      apt: name=deltarpm state=latest
+      become:true
+
+    - name: Install dstat
+      apt: name=dstat state=latest
+      become:true
+
+    - name: Install vim 
+      apt: name=vim state=latest
+      become:true
+      
+    - name: Install boost-devel 
+      apt: name=boost-devel state=latest
+      become:true
+
+    - name: install openssl-devel 
+      apt: name=openssl-devel state=latest
+      become:true
+
+    - name: install openssl-devel 
+      apt: name=libevent-devel state=latest
+      become:true
+
+    - name: Install them all 
+      apt: name={{item}} state=installed
+      with_items:
+        - libXpm-devel
+        - libjpeg-turbo-devel
+        - openjpeg-devel
+        - turbojpeg-devel
+        - giflib-devel
+        - libtiff-devel
+        - gnutls-devel
+        - libxml2-devel
+        - GConf2-devel
+        - dbus-devel
+        - wget
+        - ncurses-devel
+        - telnet
+        - llvm
+        - cmake 
+        - git
+        - htop 
+        - libtool 
+        - tmux
+        - build-essential
+      become:true
+    - name: copy vimrc
+      copy:
+        src: ~/vde/provisioning/vimrc
+        dest: ~/.vimrc

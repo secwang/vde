@@ -63,3 +63,10 @@ command! Json call Json()
 
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
+
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
+
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
